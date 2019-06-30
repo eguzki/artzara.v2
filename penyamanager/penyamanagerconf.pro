@@ -16,7 +16,7 @@ CONFIG += c++11
 
 TEMPLATE = app
 
-RC_ICONS = images/alegrialogo.ico
+RC_ICONS = images/artzaralogo.ico
 
 include(libs/simplecrypt/simplecrypt.pro)
 include(libs/QsLog2/QsLog.pri)

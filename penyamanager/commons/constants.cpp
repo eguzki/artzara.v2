@@ -7,7 +7,7 @@ namespace PenyaManager {
     //
     const QString   Constants::kOrganizationName                = "penyamanager";
     //
-    const QString   Constants::kApplicationName                 = "alegria";
+    const QString   Constants::kApplicationName                 = "artzara";
     //
     const QString   Constants::kResourcePathKey                 = "resourcepath";
     //

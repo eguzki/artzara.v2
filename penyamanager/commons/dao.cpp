@@ -13,6 +13,10 @@ namespace PenyaManager {
             // add QT_DEBUG_PLUGINS=1 to check plugin errors
             m_db(QSqlDatabase::addDatabase("QMYSQL"))
     {
+        std::cout << hostname.toStdString() << std::endl;
+        std::cout << databaseName.toStdString() << std::endl;
+        std::cout << username.toStdString() << std::endl;
+        std::cout << pass.toStdString() << std::endl;
         // configure db connection
         m_db.setHostName(hostname);
         m_db.setDatabaseName(databaseName);

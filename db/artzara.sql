@@ -8,22 +8,22 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema alegria
+-- Schema artzara
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `alegria` ;
+DROP SCHEMA IF EXISTS `artzara` ;
 
 -- -----------------------------------------------------
--- Schema alegria
+-- Schema artzara
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `alegria` DEFAULT CHARACTER SET utf8 ;
-USE `alegria` ;
+CREATE SCHEMA IF NOT EXISTS `artzara` DEFAULT CHARACTER SET utf8 ;
+USE `artzara` ;
 
 -- -----------------------------------------------------
--- Table `alegria`.`member`
+-- Table `artzara`.`member`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`member` ;
+DROP TABLE IF EXISTS `artzara`.`member` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`member` (
+CREATE TABLE IF NOT EXISTS `artzara`.`member` (
   `idmember` INT(11) NOT NULL AUTO_INCREMENT,
   `username` INT(11) NOT NULL,
   `name` VARCHAR(45) CHARACTER SET 'utf8' NOT NULL,
@@ -59,11 +59,11 @@ COLLATE = utf8_bin;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`account`
+-- Table `artzara`.`account`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`account` ;
+DROP TABLE IF EXISTS `artzara`.`account` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`account` (
+CREATE TABLE IF NOT EXISTS `artzara`.`account` (
   `idaccount` INT(11) NOT NULL AUTO_INCREMENT,
   `idmember` INT(11) NOT NULL,
   `amount` DECIMAL(10,2) NOT NULL,
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `alegria`.`account` (
   INDEX `fk_account_member1_idx` (`idmember` ASC),
   CONSTRAINT `fk_account_member1`
     FOREIGN KEY (`idmember`)
-    REFERENCES `alegria`.`member` (`idmember`)
+    REFERENCES `artzara`.`member` (`idmember`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -84,11 +84,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`invoice`
+-- Table `artzara`.`invoice`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`invoice` ;
+DROP TABLE IF EXISTS `artzara`.`invoice` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`invoice` (
+CREATE TABLE IF NOT EXISTS `artzara`.`invoice` (
   `idinvoice` INT(11) NOT NULL AUTO_INCREMENT,
   `state` INT(11) NOT NULL,
   `date` DATETIME NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `alegria`.`invoice` (
   INDEX `fk_invoice_member1_idx` (`idmember` ASC),
   CONSTRAINT `fk_invoice_member1`
     FOREIGN KEY (`idmember`)
-    REFERENCES `alegria`.`member` (`idmember`)
+    REFERENCES `artzara`.`member` (`idmember`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -108,11 +108,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`product_family`
+-- Table `artzara`.`product_family`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`product_family` ;
+DROP TABLE IF EXISTS `artzara`.`product_family` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`product_family` (
+CREATE TABLE IF NOT EXISTS `artzara`.`product_family` (
   `idproduct_family` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `name_es` VARCHAR(45) NULL,
@@ -126,11 +126,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`provider`
+-- Table `artzara`.`provider`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`provider` ;
+DROP TABLE IF EXISTS `artzara`.`provider` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`provider` (
+CREATE TABLE IF NOT EXISTS `artzara`.`provider` (
   `idprovider` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NOT NULL,
   `image` VARCHAR(200) NULL,
@@ -142,11 +142,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`product_item`
+-- Table `artzara`.`product_item`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`product_item` ;
+DROP TABLE IF EXISTS `artzara`.`product_item` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`product_item` (
+CREATE TABLE IF NOT EXISTS `artzara`.`product_item` (
   `idproduct_item` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NOT NULL,
   `name_es` VARCHAR(45) NULL,
@@ -162,12 +162,12 @@ CREATE TABLE IF NOT EXISTS `alegria`.`product_item` (
   INDEX `fk_product_item_provider1_idx` (`idprovider` ASC),
   CONSTRAINT `fk_product_item_product_family`
     FOREIGN KEY (`idproduct_family`)
-    REFERENCES `alegria`.`product_family` (`idproduct_family`)
+    REFERENCES `artzara`.`product_family` (`idproduct_family`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_product_item_provider1`
     FOREIGN KEY (`idprovider`)
-    REFERENCES `alegria`.`provider` (`idprovider`)
+    REFERENCES `artzara`.`provider` (`idprovider`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -176,11 +176,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`inv_prod`
+-- Table `artzara`.`inv_prod`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`inv_prod` ;
+DROP TABLE IF EXISTS `artzara`.`inv_prod` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`inv_prod` (
+CREATE TABLE IF NOT EXISTS `artzara`.`inv_prod` (
   `idinvoice` INT(11) NOT NULL,
   `idproduct_item` INT(11) NOT NULL,
   `count` INT(11) NOT NULL,
@@ -191,12 +191,12 @@ CREATE TABLE IF NOT EXISTS `alegria`.`inv_prod` (
   INDEX `fk_invoice_has_product_item_invoice1_idx` (`idinvoice` ASC),
   CONSTRAINT `fk_invoice_has_product_item_invoice1`
     FOREIGN KEY (`idinvoice`)
-    REFERENCES `alegria`.`invoice` (`idinvoice`)
+    REFERENCES `artzara`.`invoice` (`idinvoice`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_invoice_has_product_item_product_item1`
     FOREIGN KEY (`idproduct_item`)
-    REFERENCES `alegria`.`product_item` (`idproduct_item`)
+    REFERENCES `artzara`.`product_item` (`idproduct_item`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -204,11 +204,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`deposit`
+-- Table `artzara`.`deposit`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`deposit` ;
+DROP TABLE IF EXISTS `artzara`.`deposit` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`deposit` (
+CREATE TABLE IF NOT EXISTS `artzara`.`deposit` (
   `iddeposit` INT(11) NOT NULL AUTO_INCREMENT,
   `state` INT(11) NOT NULL,
   `date` DATETIME NOT NULL,
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `alegria`.`deposit` (
   INDEX `fk_deposit_member1_idx` (`idmember` ASC),
   CONSTRAINT `fk_deposit_member1`
     FOREIGN KEY (`idmember`)
-    REFERENCES `alegria`.`member` (`idmember`)
+    REFERENCES `artzara`.`member` (`idmember`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -227,11 +227,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`lunchtables`
+-- Table `artzara`.`lunchtables`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`lunchtables` ;
+DROP TABLE IF EXISTS `artzara`.`lunchtables` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`lunchtables` (
+CREATE TABLE IF NOT EXISTS `artzara`.`lunchtables` (
   `idtable` INT(11) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `guestnum` SMALLINT NOT NULL,
@@ -240,11 +240,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`tablereservation`
+-- Table `artzara`.`tablereservation`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`tablereservation` ;
+DROP TABLE IF EXISTS `artzara`.`tablereservation` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`tablereservation` (
+CREATE TABLE IF NOT EXISTS `artzara`.`tablereservation` (
   `idreservation` INT NOT NULL AUTO_INCREMENT,
   `date` DATE NOT NULL,
   `reservationtype` TINYINT NOT NULL,
@@ -257,23 +257,23 @@ CREATE TABLE IF NOT EXISTS `alegria`.`tablereservation` (
   INDEX `fk_tablereservation_lunchtables_idx` (`idtable` ASC),
   CONSTRAINT `fk_tablereservation_member1`
     FOREIGN KEY (`idmember`)
-    REFERENCES `alegria`.`member` (`idmember`)
+    REFERENCES `artzara`.`member` (`idmember`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tablereservation_table1`
     FOREIGN KEY (`idtable`)
-    REFERENCES `alegria`.`lunchtables` (`idtable`)
+    REFERENCES `artzara`.`lunchtables` (`idtable`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`provider_invoices`
+-- Table `artzara`.`provider_invoices`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`provider_invoices` ;
+DROP TABLE IF EXISTS `artzara`.`provider_invoices` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`provider_invoices` (
+CREATE TABLE IF NOT EXISTS `artzara`.`provider_invoices` (
   `idprovider_invoices` VARCHAR(50) NOT NULL,
   `date` DATE NOT NULL,
   `total` DECIMAL(10,2) NOT NULL,
@@ -282,18 +282,18 @@ CREATE TABLE IF NOT EXISTS `alegria`.`provider_invoices` (
   INDEX `fk_provider_invoices_provider1_idx` (`idprovider` ASC),
   CONSTRAINT `fk_provider_invoices_provider1`
     FOREIGN KEY (`idprovider`)
-    REFERENCES `alegria`.`provider` (`idprovider`)
+    REFERENCES `artzara`.`provider` (`idprovider`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`provider_invoices_product`
+-- Table `artzara`.`provider_invoices_product`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`provider_invoices_product` ;
+DROP TABLE IF EXISTS `artzara`.`provider_invoices_product` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`provider_invoices_product` (
+CREATE TABLE IF NOT EXISTS `artzara`.`provider_invoices_product` (
   `provider_invoices_idprovider_invoices` VARCHAR(50) NOT NULL,
   `product_item_idproduct_item` INT(11) NOT NULL,
   `count` INT(11) NOT NULL,
@@ -302,23 +302,23 @@ CREATE TABLE IF NOT EXISTS `alegria`.`provider_invoices_product` (
   INDEX `fk_table1_product_item1_idx` (`product_item_idproduct_item` ASC),
   CONSTRAINT `fk_table1_provider_invoices1`
     FOREIGN KEY (`provider_invoices_idprovider_invoices`)
-    REFERENCES `alegria`.`provider_invoices` (`idprovider_invoices`)
+    REFERENCES `artzara`.`provider_invoices` (`idprovider_invoices`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_table1_product_item1`
     FOREIGN KEY (`product_item_idproduct_item`)
-    REFERENCES `alegria`.`product_item` (`idproduct_item`)
+    REFERENCES `artzara`.`product_item` (`idproduct_item`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`ovens`
+-- Table `artzara`.`ovens`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`ovens` ;
+DROP TABLE IF EXISTS `artzara`.`ovens` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`ovens` (
+CREATE TABLE IF NOT EXISTS `artzara`.`ovens` (
   `idoven` INT(11) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idoven`))
@@ -326,11 +326,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`ovenreservation`
+-- Table `artzara`.`ovenreservation`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`ovenreservation` ;
+DROP TABLE IF EXISTS `artzara`.`ovenreservation` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`ovenreservation` (
+CREATE TABLE IF NOT EXISTS `artzara`.`ovenreservation` (
   `idreservation` INT NOT NULL AUTO_INCREMENT,
   `date` DATE NOT NULL,
   `reservationtype` TINYINT NOT NULL,
@@ -342,23 +342,23 @@ CREATE TABLE IF NOT EXISTS `alegria`.`ovenreservation` (
   INDEX `fk_ovenreservation_oventables1_idx` (`idoven` ASC),
   CONSTRAINT `fk_tablereservation_member10`
     FOREIGN KEY (`idmember`)
-    REFERENCES `alegria`.`member` (`idmember`)
+    REFERENCES `artzara`.`member` (`idmember`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ovenreservation_oventables1`
     FOREIGN KEY (`idoven`)
-    REFERENCES `alegria`.`ovens` (`idoven`)
+    REFERENCES `artzara`.`ovens` (`idoven`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`fireplaces`
+-- Table `artzara`.`fireplaces`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`fireplaces` ;
+DROP TABLE IF EXISTS `artzara`.`fireplaces` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`fireplaces` (
+CREATE TABLE IF NOT EXISTS `artzara`.`fireplaces` (
   `idfireplace` INT(11) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idfireplace`))
@@ -366,11 +366,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `alegria`.`fireplacereservation`
+-- Table `artzara`.`fireplacereservation`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `alegria`.`fireplacereservation` ;
+DROP TABLE IF EXISTS `artzara`.`fireplacereservation` ;
 
-CREATE TABLE IF NOT EXISTS `alegria`.`fireplacereservation` (
+CREATE TABLE IF NOT EXISTS `artzara`.`fireplacereservation` (
   `idreservation` INT NOT NULL AUTO_INCREMENT,
   `date` DATE NOT NULL,
   `reservationtype` TINYINT NOT NULL,
@@ -382,12 +382,12 @@ CREATE TABLE IF NOT EXISTS `alegria`.`fireplacereservation` (
   INDEX `fk_fireplacereservation_fireplacetables1_idx` (`idfireplace` ASC),
   CONSTRAINT `fk_tablereservation_member100`
     FOREIGN KEY (`idmember`)
-    REFERENCES `alegria`.`member` (`idmember`)
+    REFERENCES `artzara`.`member` (`idmember`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_fireplacereservation_fireplacetables1`
     FOREIGN KEY (`idfireplace`)
-    REFERENCES `alegria`.`fireplaces` (`idfireplace`)
+    REFERENCES `artzara`.`fireplaces` (`idfireplace`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

@@ -81,7 +81,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-image: url(&quot;:/images/alegrialogo.jpg&quot;)</string>
+         <string notr="true">background-image: url(&quot;:/images/artzaralogo.jpg&quot;)</string>
         </property>
        </widget>
       </item>
@@ -93,7 +93,7 @@
          </font>
         </property>
         <property name="text">
-         <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;SDRC Alegría de Iruñea KKAE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Artzara Elkartea&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>

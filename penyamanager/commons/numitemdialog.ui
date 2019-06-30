@@ -30,7 +30,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>:/images/alegrialogo.jpg</normaloff>:/images/alegrialogo.jpg</iconset>
+    <normaloff>:/images/artzaralogo.jpg</normaloff>:/images/artzaralogo.jpg</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">#displayLabel{
