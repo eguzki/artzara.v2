@@ -1,5 +1,5 @@
 * User profile view -> change email or account num
-** On email or account change -> send email to alegria@yahoo.es
+** On email or account change -> send email to artzara@yahoo.es
 
 * translations
   * Default use: load some tranlation files and LANG system env turns out to be the language to be shown
