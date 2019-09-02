@@ -10,7 +10,7 @@ ROOTDIR=/volume1/backup/sqlbackup
 DAILYDIR=$ROOTDIR/backup.daily
 DB_USER=backup
 DB_PASSWORD=123456
-DB_DATABASE=alegria
+DB_DATABASE=artzara
 EXTRA_MYSQLDUMP_OPTIONS='--opt'
 TMP_DIR=/tmp
 

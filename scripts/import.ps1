@@ -13,7 +13,7 @@ $users = Import-CSV -LiteralPath c:\penyamanager\memberlist.csv -Encoding UTF8
 
 $count = 1
 
-"USE alegria ;" >> c:\penyamanager\import.sql
+"USE artzara;" >> c:\penyamanager\import.sql
 
 ForEach($user in $users)
 {
