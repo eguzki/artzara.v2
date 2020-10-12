@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     QCoreApplication app(argc, argv);
 
     QCoreApplication::setApplicationName("penyamanagerconf");
-    QCoreApplication::setApplicationVersion("1.0");
+    QCoreApplication::setApplicationVersion("1.0.7");
 
     QCommandLineParser parser;
     parser.setApplicationDescription("penyamanager configuration application");
