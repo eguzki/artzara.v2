@@ -51,6 +51,8 @@ namespace PenyaManager {
             static TranslationManager       *m_pTranslationManager;
             //
             static DialogManager            *m_pDialogManager;
+            //
+            static Float                    m_creditLimit;
     };
 }
 
