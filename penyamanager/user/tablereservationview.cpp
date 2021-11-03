@@ -198,10 +198,9 @@ namespace PenyaManager {
         // table
         this->ui->tableReservationTableWidget->setRowCount(pReservationItemListPtr->size());
 
-        bool hasReservation = false;
         // create map structure for easy and efficient lookup
         ReservationMap tableReservationMap;
-        prepareTableReservationMap(tableReservationMap, pReservationListPtr, pMemberPtr, hasReservation);
+        prepareTableReservationMap(tableReservationMap, pReservationListPtr);
 
         Uint32 rowCount = 0;
         // fill data
@@ -215,13 +214,11 @@ namespace PenyaManager {
             // not showing action buttons when: a)has reservation for unreserved tables and b)reservation of other members
             if (tableReservationMapItem == tableReservationMap.end()) {
                 // this table is not reserved
-                if (!(hasReservation)) {
-                    // show reservation action
-                    // only when there is no reserved table for this (date, reservationType)
-                    QPushButton *pReservationButton = new QPushButton(tr("Reserve"), this->ui->tableReservationTableWidget);
-                    this->connect(pReservationButton, &QPushButton::clicked, std::bind(&TableReservationView::onReservedButton_clicked, this, pReservationItemPtr->m_idItem));
-                    this->ui->tableReservationTableWidget->setCellWidget(rowCount, 4, pReservationButton);
-                }
+                // show reservation action
+                // only when there is no reserved table for this (date, reservationType)
+                QPushButton *pReservationButton = new QPushButton(tr("Reserve"), this->ui->tableReservationTableWidget);
+                this->connect(pReservationButton, &QPushButton::clicked, std::bind(&TableReservationView::onReservedButton_clicked, this, pReservationItemPtr->m_idItem));
+                this->ui->tableReservationTableWidget->setCellWidget(rowCount, 4, pReservationButton);
             } else {
                 // this table is reserved
                 ReservationPtr pReservationPtr = tableReservationMapItem->second;
@@ -326,18 +323,12 @@ namespace PenyaManager {
         fillReservationsItems(pMemberPtr, pTableReservationListResultPtr->m_list, pTableListResultPtr->m_list, pTableListStatsPtr);
     }
     //
-    void TableReservationView::prepareTableReservationMap(ReservationMap &tableReservationMap, const ReservationListPtr &pReservationListPtr, const MemberPtr &pMemberPtr, bool &hasReservation)
+    void TableReservationView::prepareTableReservationMap(ReservationMap &tableReservationMap, const ReservationListPtr &pReservationListPtr)
     {
-        hasReservation = false;
         for (auto iter = pReservationListPtr->begin(); iter != pReservationListPtr->end(); ++iter)
         {
             ReservationPtr pReservationPtr = *iter;
             tableReservationMap[pReservationPtr->m_idItem] = pReservationPtr;
-            // has reservation when reservation is not Admin
-            if (pReservationPtr->m_idMember == pMemberPtr->m_id && !pReservationPtr->m_isAdmin)
-            {
-                hasReservation = true;
-            }
         }
     }
     //
