@@ -48,7 +48,7 @@ namespace PenyaManager {
             void fillReservationsItems(const MemberPtr &pMemberPtr, const ReservationListPtr &pReservationListPtr, const ReservationItemListPtr &pReservationItemListPtr,
                                        const ReservationItemListStatsPtr &pReservationItemListStatsPtr);
             //
-            void prepareTableReservationMap(ReservationMap &, const ReservationListPtr &, const MemberPtr &, bool &);
+            void prepareTableReservationMap(ReservationMap &, const ReservationListPtr &);
             //
             void onReserved(ReservationItemType reservationItemType, QDate reservationDate, ReservationType reservationType);
             //

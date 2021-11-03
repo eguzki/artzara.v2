@@ -33,13 +33,11 @@ set -e # Returns error if any command returns error
 # ... you can store you local modifications on a 'build.local' file
 
 checkBinary "which"
-#checkBinary "qmake"
 checkBinary "make"
-#QMAKE=$(which qmake)
-QMAKE="/opt/Qt5.7/5.7/gcc_64/bin/qmake"
+QT_BIN=${HOME}/Qt/5.15.2/gcc_64/bin
+QMAKE=${QT_BIN}/qmake
 MAKE=$(which make)
-#LRELEASE=$(which lrelease)
-LRELEASE="/opt/Qt5.7/5.7/gcc_64/bin/lrelease"
+LRELEASE=${QT_BIN}/lrelease
 
 PROJECT_NAME="penyamanager"
 CURRENT_PATH="$( cd "$( dirname "$0" )" && pwd )"
@@ -50,6 +48,7 @@ CONF_APP=$PROJECT_PATH/penyamanagerconf.pro
 USER_APP=$PROJECT_PATH/penyamanager.pro
 ADMIN_APP=$PROJECT_PATH/penyamanageradmin.pro
 QMAKE_FLAGS="-Wall"
+MAKE_FLAGS="-j$(nproc)"
 DEBUG=yes
 CLEAN=no
 
@@ -91,7 +90,7 @@ else
     echo "** BUILD:: building \"$USER_APP\""
     $QMAKE $QMAKE_FLAGS $USER_APP
     echo "** BUILD:: making with: $MAKE**"
-    $MAKE
+    $MAKE $MAKE_FLAGS
     echo "** TRANSLATION:: making with: $LRELEASE**"
     $LRELEASE $USER_APP
     echo "** DEPLOY:: qm files**"
@@ -99,7 +98,7 @@ else
     echo "** BUILD:: building \"$ADMIN_APP\""
     $QMAKE $QMAKE_FLAGS $ADMIN_APP
     echo "** BUILD:: making with: $MAKE**"
-    $MAKE
+    $MAKE $MAKE_FLAGS
     echo "** TRANSLATION:: making with: $LRELEASE**"
     $LRELEASE $ADMIN_APP
     echo "** DEPLOY:: qm files**"
@@ -107,6 +106,6 @@ else
     echo "** BUILD:: building \"$CONF_APP\""
     $QMAKE $QMAKE_FLAGS $CONF_APP
     echo "** BUILD:: making with: $MAKE**"
-    $MAKE
+    $MAKE $MAKE_FLAGS
 fi
 
